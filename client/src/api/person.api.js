@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const facultadApi = axios.create({
-    baseURL: "http://127.0.0.1:8000/modelo/api/v1/facultad/"
+    baseURL: "https://crud-react-django.onrender.com/modelo/api/v1/facultad/"
 });
 const programaApi = axios.create({
-    baseURL: "http://127.0.0.1:8000/modelo/api/v1/programa/"
+    baseURL: "https://crud-react-django.onrender.com/modelo/api/v1/programa/"
 })
 
 // CRUD de facultad
