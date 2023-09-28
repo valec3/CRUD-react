@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'django_api_rest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'epg_absmain',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': 'toor',
-        'HOST': 'localhost',  
-        'PORT': '3306',       
+        'PASSWORD': '437OIaXlwVAXZmobiCaa',
+        'HOST': 'containers-us-west-48.railway.app',  
+        'PORT': '5556',       
     }
 }
 
