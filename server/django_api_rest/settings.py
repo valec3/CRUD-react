@@ -162,6 +162,7 @@ CORS_ALLOWED_ORIGINS=[
     "http://localhost:8080",
     "http://127.0.0.1:9000",
     "http://localhost:5173",
+    "https://crudbasicjspy.vercel.app"
 ]
 # Django Rest Framework docs
 REST_FRAMEWORK = {
