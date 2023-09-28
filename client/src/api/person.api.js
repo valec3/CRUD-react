@@ -46,5 +46,5 @@ export const getPrograma = (id) => {
 }
 
 export const getDashboard = () => {
-    return axios.get('http://127.0.0.1:8000/modelo/reporte/');
+    return axios.get('https://crud-react-django.onrender.com/modelo/reporte/');
 }
