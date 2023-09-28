@@ -1,7 +1,7 @@
 
 import './App.css'
 import { BrowserRouter, Routes,Route} from "react-router-dom"
-import {Landing,FacultadForm,Facultades,Programas} from './pages'
+import {Landing,FacultadForm,Facultades,Programas,ProgramaForm} from './pages'
 import {Navigation} from './components'
 import {Toaster} from 'react-hot-toast'
 
@@ -15,10 +15,12 @@ function App() {
               <Routes>
                 <Route path="/reporte" element={<Landing/>}/>
                 <Route path="/fac-create" element={<FacultadForm/>}/>
+                <Route path="/pro-create/:id" element={<ProgramaForm/>}/>
+                <Route path="/pro-create" element={<ProgramaForm/>}/>
                 <Route path="/facultades" element={<Facultades/>}/>
                 <Route path="/facultad/:id" element={<FacultadForm/>}/>
                 <Route path="/programas" element={<Programas/>}/>
-                <Route path="/programa/:id" element={<FacultadForm/>}/>
+                <Route path="/programa/:id" element={<ProgramaForm/>}/>
               </Routes>
             </main>
             <Toaster/>

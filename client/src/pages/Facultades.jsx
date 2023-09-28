@@ -23,13 +23,14 @@ const Facultades = () => {
 
     return (
         <div className="p-3 bg-[#f5f5f5]">
-            <div className="grid grid-cols-5 font-bold text-xl gap-2">
+            <h2 className="text-4xl text-blue-300 font-bold py-2 text-center">Facultades</h2>
+            <div className="grid grid-cols-5 font-bold text-xl gap-2 bg-blue-300 w-full py-4 px-2">
                 <h4>Id</h4>
                 <h4>Nombre</h4>
                 <h4>Abreviatura</h4>
                 <h4>Id area</h4>
             </div>
-            <div className="overflow-auto h-[630px] scroll">
+            <div className="overflow-auto h-[570px] scroll">
                 {
                     facultades.map((facultad,index) => 
                         <FacultadCard key={facultad.facultad_id} facultad={facultad} idx={index} handleDelete={handleDelete}/>

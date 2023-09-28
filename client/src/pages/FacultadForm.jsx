@@ -34,7 +34,7 @@ const FacultadForm = () => {
                 primary:"#fff",
                 secondary:"#4BB543"
             },
-            duration:3000,
+            duration:10000,
             
         })
     }
@@ -56,6 +56,9 @@ const FacultadForm = () => {
 
     return (
         <div className="flex flex-col bg-slate-400 p-5 px-10 border rounded-xl m-10">
+            <h2 className="text-4xl text-white font-bold py-2 pb-6">{
+                params.id ?'Actualizar facultad' :'Crear facultad'
+            }</h2>
             <form onSubmit={handleOnSubmit} className="grid grid-cols-2 gap-4">
                 <div className="cell">
                     <label htmlFor="" className="lbl">Id facultad:</label>
