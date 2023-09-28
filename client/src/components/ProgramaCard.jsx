@@ -10,15 +10,16 @@ const ProgramaCard = ({
         console.log("update");
     }
     const deleteBtn = ()=>{
-        window.confirm("¿Está seguro que desea borrar el programa?")
-        if (window.confirm)
+        const confirm = window.confirm("¿Está seguro que desea borrar el programa?")
+        if (confirm){
             handleDelete(programa.programa_id)
-        console.log("delete");
+            console.log("delete");
+        }
     }
 
     return (
         <div>
-            <div className="grid grid-cols-6 items-center border-b-[1px] border-slate-400 hover:bg-slate-100 cursor-pointer py-2" >
+            <div className="grid grid-cols-6 gap-x-5 items-center border-b-[1px] border-slate-400 hover:bg-slate-100 cursor-pointer py-2" >
                 <h4>{programa.programa_id}</h4>
                 <h4>{programa.facultad_id}</h4>
                 <h4>{programa.nombre}</h4>

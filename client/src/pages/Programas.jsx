@@ -2,15 +2,37 @@ import { useEffect, useState } from "react"
 import { getAllProgramas,deletePrograma } from "../api/person.api"
 import {ProgramaCard} from "../components"
 import { useNavigate } from "react-router-dom"
-
+import { toast } from "react-hot-toast"
 
 const Programas = () => {
     const [programas, setProgramas] = useState([]);
     const navigate = useNavigate()
+
+    const showNotification = (estado)=>{
+        const message = `Programa ${estado} exitosamente`
+        toast.success(message,{
+            position:"top-right",
+            style:{
+                backgroundColor:"#4BB543",
+                color:"#fff",
+                fontWeight:"bold",
+                padding:"10px"
+            },
+            iconTheme:{
+                primary:"#fff",
+                secondary:"#4BB543"
+            },
+            duration:3000,
+            
+        })
+    }
+
     const handleDelete = async (id) => {
+
         deletePrograma(id);
         const newProgramas = programas.filter((programa) => programa.programa_id !== id)
         setProgramas(newProgramas)
+        showNotification("eliminada")
     }
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { createFacultad,updateFacultad,getFacultad } from "../api/person.api"
 import { useNavigate,useParams } from "react-router-dom"
-
+import { toast } from "react-hot-toast"
 
 const FacultadForm = () => {
     const navigate = useNavigate()
@@ -13,12 +13,31 @@ const FacultadForm = () => {
         console.log(data);
         if (params.id) {
             updateFacultad(params.id,data);
+            showNotification("actualizada")
         }else{
             createFacultad(data);
+            showNotification("creada")
         }
         navigate("/facultades");
     });
-
+    const showNotification = (estado)=>{
+        const message = `Facultad ${estado} exitosamente`
+        toast.success(message,{
+            position:"top-right",
+            style:{
+                backgroundColor:"#4BB543",
+                color:"#fff",
+                fontWeight:"bold",
+                padding:"10px"
+            },
+            iconTheme:{
+                primary:"#fff",
+                secondary:"#4BB543"
+            },
+            duration:3000,
+            
+        })
+    }
 
     useEffect(()=>{
         async function loadFacultad(){  

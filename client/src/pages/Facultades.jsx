@@ -23,7 +23,7 @@ const Facultades = () => {
 
     return (
         <div className="p-3 bg-[#f5f5f5]">
-            <div className="grid grid-cols-5 font-bold text-xl">
+            <div className="grid grid-cols-5 font-bold text-xl gap-2">
                 <h4>Id</h4>
                 <h4>Nombre</h4>
                 <h4>Abreviatura</h4>

@@ -44,3 +44,7 @@ export const updatePrograma = (id, programa) => {
 export const getPrograma = (id) => {
     return programaApi.get(`/${id}/`);
 }
+
+export const getDashboard = () => {
+    return axios.get('http://127.0.0.1:8000/modelo/reporte/');
+}

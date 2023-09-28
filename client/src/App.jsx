@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter, Routes,Route} from "react-router-dom"
 import {Landing,FacultadForm,Facultades,Programas} from './pages'
 import {Navigation} from './components'
+import {Toaster} from 'react-hot-toast'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/programa/:id" element={<FacultadForm/>}/>
               </Routes>
             </main>
+            <Toaster/>
         </div>
       </BrowserRouter>
   )
