@@ -1,24 +1,46 @@
 import axios from 'axios';
 
-const personApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/modelo/api/v1/modelo/'
+const facultadApi = axios.create({
+    baseURL: "http://127.0.0.1:8000/modelo/api/v1/facultad/"
 });
+const programaApi = axios.create({
+    baseURL: "http://127.0.0.1:8000/modelo/api/v1/programa/"
+})
 
-export const getAllPersons = () => {
-    return personApi.get('/');
+// CRUD de facultad
+// -----------------------------------------
+
+export const getAllFacultades = () => {
+    return facultadApi.get('/');
 }
-export const getPerson = (id) => {
-    return personApi.get(`/${id}`);
+export const createFacultad = (facultad) => {
+    return facultadApi.post('/', facultad);
+}
+export const deleteFacultad = (id) => {
+    facultadApi.delete(`/${id}`);
+}
+export const updateFacultad = (id, facultad) => {
+    facultadApi.put(`/${id}/`,facultad);
+}
+export const getFacultad = (id) => {
+    return facultadApi.get(`/${id}/`);
 }
 
-export const createPerson = (person) => {
-    return personApi.post('/', person);
-}
+// CRUD de programa
+// -----------------------------------------
 
-export const deletePerson = (id) => {
-    personApi.delete(`/${id}`);
+export const getAllProgramas = () => {
+    return programaApi.get('/');
 }
-
-export const updatePerson = (id, person) => {
-    personApi.put(`/${id}`, person);
+export const createPrograma = (programa) => {
+    return programaApi.post('/', programa);
+}
+export const deletePrograma = (id) => {
+    programaApi.delete(`/${id}`);
+}
+export const updatePrograma = (id, programa) => {
+    programaApi.put(`/${id}/`,programa);
+}
+export const getPrograma = (id) => {
+    return programaApi.get(`/${id}/`);
 }

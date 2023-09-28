@@ -1,70 +1,69 @@
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { createPerson,updatePerson,getPerson } from "../api/person.api"
+import { createFacultad,updateFacultad,getFacultad } from "../api/person.api"
 import { useNavigate,useParams } from "react-router-dom"
 
 
 const FacultadForm = () => {
     const navigate = useNavigate()
     const params = useParams()
-    const {register,handleSubmit,formState:{errors}}= useForm()
+    const {register,handleSubmit,formState:{errors},setValue}= useForm()
 
     const handleOnSubmit = handleSubmit(async (data)=>{
         console.log(data);
         if (params.id) {
-            updatePerson(params.id,data);
+            updateFacultad(params.id,data);
         }else{
-            await createPerson(data);
+            createFacultad(data);
         }
-        navigate("/people");
+        navigate("/facultades");
     });
 
-    const handleUpdate = async ()=>{
-        const accept = window.confirm("Estas seguro de actualizar este usuario?")
-        if(accept){
-            updatePerson(params.id);
-            navigate("/people");
-        }
-    }
 
     useEffect(()=>{
-        async function loadPerson(){  
+        async function loadFacultad(){  
             if(params.id){
-                const res = await getPerson(params.id)
-                console.log(res);
+                const {data} = await getFacultad(params.id)
+                console.log(data);
+                setValue("facultad_id",data.facultad_id)
+                setValue("nombre",data.nombre)
+                setValue("abreviatura",data.abreviatura)
+                setValue("id_area",data.id_area)
+
             }
         }
-        loadPerson();
+        loadFacultad();
     },[params.id])
 
     return (
-        <div className="flex flex-col bg-blue-400 p-5 px-10 border rounded-xl m-10">
+        <div className="flex flex-col bg-slate-400 p-5 px-10 border rounded-xl m-10">
             <form onSubmit={handleOnSubmit} className="grid grid-cols-2 gap-4">
                 <div className="cell">
+                    <label htmlFor="" className="lbl">Id facultad:</label>
+                    <input className={`input ${params.id ? 'input-disabled':''}`} type="number" name="" id="" {...(params.id ? { disabled: true } : null)} {...register("facultad_id",{required:false})} />
+                    {errors.facultad_id && <span className="text-red-500">Este campo es requerido</span>}
+                </div>
+                <div className="cell">
                     <label htmlFor="" className="lbl">Nombre:</label>
-                    <input className="input" type="text" name="" id=""  {...register("name",{required:false})} />
+                    <input className="input" type="text" name="" id="" {...register("nombre",{required:false})} />
                 </div>
                 <div className="cell">
-                    <label htmlFor="" className="lbl">Edad:</label>
-                    <input className="input" type="number" name="" id=""  {...register("edad",{required:false})} />
+                    <label htmlFor="" className="lbl">Abreviatura:</label>
+                    <input className="input" type="text" name="" id="" {...register("abreviatura",{required:false})} />
                 </div>
                 <div className="cell">
-                    <label htmlFor="" className="lbl">Email:</label>
-                    <input className="input" type="email" name="" id=""  {...register("email",{required:false})} />
+                    <label htmlFor="" className="lbl">Id area:</label>
+                    <input className="input" type="number" name="" id="" {...register("id_area",{required:false})} />
                 </div>
-                <div className="cell">
-                    <label htmlFor="" className="lbl">Numero:</label>
-                    <input className="input" type="number" name="" id=""  {...register("phone",{required:false})} />
+                <div className="mt-2">
+                    {
+                        params.id?
+                            <button className="btn">Actualizar</button>
+                            : <button className="btn">Crear</button>
+                    }
                 </div>
-                <button className="btn">Save</button>
             </form>
-            {
-                params.id && <button 
-                                className="btn" 
-                                onClick={handleUpdate}>
-                                    Update
-                            </button>
-            }
+        
         </div>
     )
 }

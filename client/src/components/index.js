@@ -1,10 +1,11 @@
 import Navigation from "./Navigation";
-import PeopleList from "./PeopleList";
-import PersonCard from "./PersonCard";
 import Buttons from "./Buttons";
+import FacultadCard from "./FacultadCard";
+import ProgramaCard from "./ProgramaCard";
+
 export { 
         Navigation,
-        PeopleList,
-        PersonCard,
-        Buttons
+        Buttons,
+        FacultadCard,
+        ProgramaCard
     };

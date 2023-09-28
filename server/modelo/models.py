@@ -2,19 +2,15 @@ from django.db import models
 
 # Create your models here.
 
-class Person(models.Model):
-    name = models.CharField(max_length=50) 
-    edad = models.IntegerField()
-    email = models.EmailField()
-    phone = models.CharField(max_length=10)
-    insulina = models.FloatField()
-    glucosa = models.FloatField()
-    peso = models.FloatField()
-    presion = models.FloatField()
-    diagnostico = models.BooleanField(default=False)
-
+class Programa(models.Model):
+    programa_id = models.IntegerField(primary_key=True)
+    facultad_id = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    cod_programa = models.CharField(max_length=10)
+    tipo = models.CharField(max_length=10)
+    
     def __str__(self) -> str:
-        return self.name
+        return self.nombre
     
 class Facultad(models.Model):
     facultad_id = models.IntegerField(primary_key=True)

@@ -1,11 +1,11 @@
-import PeoplePage from "./PeoplePage";
-import PersonFormPage from "./PersonFormPage";
+
 import Landing from "./Landing";
 import FacultadForm from "./FacultadForm";
-
+import Facultades from "./Facultades";
+import Programas from "./Programas";
 export { 
-        PeoplePage, 
-        PersonFormPage,
         Landing ,
-        FacultadForm
+        FacultadForm,
+        Facultades,
+        Programas
     };

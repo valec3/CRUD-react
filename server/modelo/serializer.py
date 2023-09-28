@@ -1,11 +1,10 @@
 from rest_framework import serializers
-from .models import Person, Facultad
+from .models import Programa, Facultad
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class ProgramaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Person
-        # fields = ('id','name','edad','email','phone','insulina','glucosa','peso','presion','diagnostico')
+        model = Programa
         fields = '__all__' 
         
 class FacultadSerializer(serializers.ModelSerializer):
