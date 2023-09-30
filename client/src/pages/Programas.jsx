@@ -35,10 +35,12 @@ const Programas = () => {
     }
 
     useEffect(() => {
-        const fetchProgramas = async () => {
+        async function fetchProgramas() {
             const {data} = await getAllProgramas()
+            console.log('get api:',data)
             setProgramas(data)
         }
+        
         fetchProgramas()
     }, [])
 

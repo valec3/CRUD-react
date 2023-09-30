@@ -31,21 +31,26 @@ const ProgramaForm = () => {
     const handleOnSubmit = handleSubmit(async (data)=>{
         console.log(data);
         if (params.id) {
-            updatePrograma(params.id,data);
+            console.log("update",data);
+            await updatePrograma(params.id,data);
             showNotification("actualizado")
         }else{
-            createPrograma(data);
+            await createPrograma(data);
             showNotification("creado")
             // actualizar pagina
         }
-        navigate("/programas");
+        console.log("Redireccionando...");
+        setTimeout(() => {
+            navigate("/programas");
+        }, 500);
     });
+
     useEffect(()=>{
         async function loadFacultad(){  
             if(params.id){
                 const {data} = await getPrograma(params.id)
                 console.log(data);
-                setValue("programa_id",data.facultad_id)
+                setValue("programa_id",data.programa_id)
                 setValue("facultad_id",data.facultad_id)
                 setValue("nombre",data.nombre)
                 setValue("cod_programa",data.cod_programa)
