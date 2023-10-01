@@ -36,6 +36,7 @@ const Programas = () => {
 
     useEffect(() => {
         async function fetchProgramas() {
+            console.log('Obteniendo programas...')
             const {data} = await getAllProgramas()
             console.log('get api:',data)
             setProgramas(data)

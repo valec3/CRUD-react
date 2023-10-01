@@ -14,6 +14,7 @@ const Facultades = () => {
 
     useEffect(() => {
         async function loadFacultades() {
+            console.log('Obteniendo facultades...')
             const res= await getAllFacultades()
             console.log('get api:',res)
             setFacultades(res.data)

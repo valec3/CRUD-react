@@ -63,7 +63,7 @@ const ProgramaForm = () => {
     return (
         <div>
             <div className="flex flex-col bg-slate-400 p-5 px-10 border rounded-xl m-10">
-                <h2 className="text-4xl text-white font-bold py-2 pb-6">Crear programa</h2>
+                <h2 className="text-4xl text-white font-bold py-2 pb-6">{params.id ? 'Actualizar' : 'Crear'} programa</h2>
                 <form onSubmit={handleOnSubmit} className="grid grid-cols-2 gap-4 items-center">
                     <div className="cell">
                         <label htmlFor="" className="lbl">Id Programa:</label>
