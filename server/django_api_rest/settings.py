@@ -1,3 +1,7 @@
+# Para render deploy
+import os
+import dj_database_url
+
 """
 Django settings for django_api_rest project.
 
@@ -20,14 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#%1dw*rqgl1@$b4*p9h#)$b3m9!f1nyq3fx7+-9%q9jv#0xhy#'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,17 +87,22 @@ WSGI_APPLICATION = 'django_api_rest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'railway',
+#         'USER': 'root',
+#         'PASSWORD': '437OIaXlwVAXZmobiCaa',
+#         'HOST': 'containers-us-west-48.railway.app',  
+#         'PORT': '5556',       
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'epg_absmain',
-        'USER': 'root',
-        'PASSWORD': 'toor',
-        'HOST': 'localhost',  
-        'PORT': '3306',       
-    }
+    'default': dj_database_url.config(
+        default = 'mysql://root:437OIaXlwVAXZmobiCaa@containers-us-west-48.railway.app:5556/railway',
+        conn_max_age = 600,
+    )
 }
-
 
 
 # Password validation
@@ -127,6 +140,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Render deploy
+if not DEBUG:
+    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Turn on WhiteNoise storage backend that takes care of compressing static files
+    # and creating unique names for each version so they can safely be cached forever.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

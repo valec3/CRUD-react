@@ -12,10 +12,10 @@ const FacultadForm = () => {
     const handleOnSubmit = handleSubmit(async (data)=>{
         console.log(data);
         if (params.id) {
-            updateFacultad(params.id,data);
+            await updateFacultad(params.id,data);
             showNotification("actualizada")
         }else{
-            createFacultad(data);
+            await createFacultad(data);
             showNotification("creada")
         }
         navigate("/facultades");
